@@ -5,8 +5,8 @@ from jieba import posseg
 import jieba
 from tokenizer import segment
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = '/root/share/HCLG/ZN_qiye/week1/HCLG'
 
 REMOVE_WORDS = ['|', '[', ']', '语音', '图片', ' ']
 
@@ -47,9 +47,9 @@ def parse_data(train_path, test_path):
     test_x = test_x.apply(preprocess_sentence)
     print('test_x is ', len(test_x))
     test_y = []
-    train_x.to_csv('{}/datasets/train_set.seg_x.txt'.format(BASE_DIR), index=None, header=False)
-    train_y.to_csv('{}/datasets/train_set.seg_y.txt'.format(BASE_DIR), index=None, header=False)
-    test_x.to_csv('{}/datasets/test_set.seg_x.txt'.format(BASE_DIR), index=None, header=False)
+    train_x.to_csv('{}/data/train_set.seg_x.txt'.format(BASE_DIR), index=None, header=False)
+    train_y.to_csv('{}/data/train_set.seg_y.txt'.format(BASE_DIR), index=None, header=False)
+    test_x.to_csv('{}/data/test_set.seg_x.txt'.format(BASE_DIR), index=None, header=False)
 
 
 def preprocess_sentence(sentence):
@@ -61,7 +61,7 @@ def preprocess_sentence(sentence):
 
 if __name__ == '__main__':
     # 需要更换成自己数据的存储地址
-    parse_data('{}/datasets/AutoMaster_TrainSet.csv'.format(BASE_DIR),
-               '{}/datasets/AutoMaster_TestSet.csv'.format(BASE_DIR))
+    parse_data('{}/data/AutoMaster_TrainSet.csv'.format(BASE_DIR),
+               '{}/data/AutoMaster_TestSet.csv'.format(BASE_DIR))
 
 
