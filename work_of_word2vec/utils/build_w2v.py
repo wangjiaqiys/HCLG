@@ -2,9 +2,12 @@ from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 from gensim.models.keyedvectors import KeyedVectors
 from data_utils import dump_pkl
+from annoy import AnnoyIndex
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# TODO:
+BASE_DIR = '/root/share/HCLG/ZN_qiye/week1/HCLG'
 
 def read_lines(path, col_sep=None):
     lines = []
@@ -35,10 +38,20 @@ def save_sentence(lines, sentence_path):
             f.write('%s\n' % line.strip())
     print('save sentence:%s' % sentence_path)
 
+# TODO: 将词向量保存成Index格式
+def save_index(w2v):
+    wv_index = AnnoyIndex(256)
+    i = 0
+    for key in wv_model.vocab.keys():
+        v = wv_model[key]
+        wv_index.add_item(i, v)
+        i += 1
+    wv_index.build(10)
+    wv_index.save('wv_index_build10.index')
 
-def build(train_x_seg_path, test_y_seg_path, test_seg_path, out_path=None, sentence_path='',
+def build(train_x_seg_path, train_y_seg_path, test_seg_path, out_path=None, sentence_path='',
           w2v_bin_path="w2v.bin", min_count=1):
-    sentences = extract_sentence(train_x_seg_path, test_y_seg_path, test_seg_path)
+    sentences = extract_sentence(train_x_seg_path, train_y_seg_path, test_seg_path)
     save_sentence(sentences, sentence_path)
     print('train w2v model...')
     # train model
@@ -47,6 +60,8 @@ def build(train_x_seg_path, test_y_seg_path, test_seg_path, out_path=None, sente
     your code
     w2v = （one line）
     """
+    # TODO:
+    w2v = Word2Vec(sg=1, sentences=LineSentence(sentence_path), size=256, window=5)
     w2v.wv.save_word2vec_format(w2v_bin_path, binary=True)
     print("save %s ok." % w2v_bin_path)
     # test
@@ -58,12 +73,13 @@ def build(train_x_seg_path, test_y_seg_path, test_seg_path, out_path=None, sente
     for word in model.vocab:
         word_dict[word] = model[word]
     dump_pkl(word_dict, out_path, overwrite=True)
-
+    # TODO: 使用annoy将词向量保存成索引方式
+    save_index(w2v)
 
 if __name__ == '__main__':
-    build('{}/datasets/train_set.seg_x.txt'.format(BASE_DIR),
-          '{}/datasets/train_set.seg_y.txt'.format(BASE_DIR),
-          '{}/datasets/test_set.seg_x.txt'.format(BASE_DIR),
-          out_path='{}/datasets/word2vec.txt'.format(BASE_DIR),
-          sentence_path='{}/datasets/sentences.txt'.format(BASE_DIR))
+    build('{}/data/train_set.seg_x.txt'.format(BASE_DIR),
+          '{}/data/train_set.seg_y.txt'.format(BASE_DIR),
+          '{}/data/test_set.seg_x.txt'.format(BASE_DIR),
+          out_path='{}/data/word2vec.txt'.format(BASE_DIR),
+          sentence_path='{}/data/sentences.txt'.format(BASE_DIR))
 
