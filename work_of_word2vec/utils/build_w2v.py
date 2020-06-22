@@ -42,13 +42,27 @@ def save_sentence(lines, sentence_path):
 def save_index(w2v):
     wv_index = AnnoyIndex(256)
     i = 0
-    for key in wv_model.vocab.keys():
-        v = wv_model[key]
+    for key in w2v.vocab.keys():
+        v = w2v[key]
         wv_index.add_item(i, v)
         i += 1
     wv_index.build(10)
     wv_index.save('wv_index_build10.index')
 
+# TODO: 加载测试
+def test():
+    wv_index = AnnoyIndex(256)
+    wv_index.load('/root/share/HCLG/ZN_qiye/week1/HCLG/work_of_word2vec/model/wv_index_build10.index', prefault=False)
+    reverse_word_index = {}
+    word_index = {}
+    with open('/root/share/HCLG/ZN_qiye/week1/HCLG/data/reverse_vocab.txt', 'r', encoding='utf-8') as f:
+        for line in f.readlines():
+            reverse_word_index[int(line.split()[0])] = line.split()[1]
+    with open('/root/share/HCLG/ZN_qiye/week1/HCLG/data/vocab.txt', 'r', encoding='utf-8') as f:
+        for line in f.readlines():
+            word_index[line.split()[0]] = int(line.split()[1])
+    for item in wv_index.get_nns_by_item(word_index[u'车'], 11):
+    print(reverse_word_index[item])
 def build(train_x_seg_path, train_y_seg_path, test_seg_path, out_path=None, sentence_path='',
           w2v_bin_path="w2v.bin", min_count=1):
     sentences = extract_sentence(train_x_seg_path, train_y_seg_path, test_seg_path)
