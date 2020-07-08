@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b0a16835-450a-4a05-b2ff-e2e85accc4c8" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1eMEuyLdrw9LiDAaWmvqwEBwrso" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\wangj\Desktop\zn_qiye\week2\week 2(1)\homework-week2\seq2seq_tf2" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b0a16835-450a-4a05-b2ff-e2e85accc4c8" name="Default Changelist" comment="" />
+      <created>1594123287572</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594123287572</updated>
+      <workItem from="1594123288952" duration="1227000" />
+      <workItem from="1594124535360" duration="10659000" />
+      <workItem from="1594161934855" duration="4168000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/data_utils.py</url>
+          <line>272</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
