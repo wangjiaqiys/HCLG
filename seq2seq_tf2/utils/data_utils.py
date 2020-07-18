@@ -269,8 +269,10 @@ def load_word2vec(params):
     vocab_dict = open(params['vocab_path'], encoding='utf-8').readlines()
     wv_index.get_item_vector(word_index[word])
     '''
-    from gensim.models import KeyedVectors
-    word2vec_dict = KeyedVectors.load_word2vec_format(params['word2vec_output'], binary=True)
+    # from gensim.models import KeyedVectors
+    from gensim.models.word2vec import Word2Vec
+    # word2vec_dict = KeyedVectors.load_word2vec_format(params['word2vec_output'])
+    word2vec_dict = Word2Vec.load(params['word2vec_output'])
     vocab_dict = open(params['vocab_path'], encoding='utf-8').readlines()
     embedding_matrix = np.zeros((params['vocab_size'], params['embed_size']))
 

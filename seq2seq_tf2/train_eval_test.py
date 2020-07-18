@@ -2,9 +2,9 @@ import tensorflow as tf
 from seq2seq_tf2.models.sequence_to_sequence import SequenceToSequence
 from seq2seq_tf2.batcher import batcher, Vocab
 from seq2seq_tf2.train_helper import train_model
-# from seq2seq_tf2.test_helper import beam_decode, greedy_decode
+from seq2seq_tf2.test_helper import beam_decode, greedy_decode
 from tqdm import tqdm
-# from utils.data_utils import get_result_filename
+from seq2seq_tf2.utils.data_utils import get_result_filename
 import pandas as pd
 # from rouge import Rouge
 import pprint
@@ -50,7 +50,7 @@ def test(params):
 
     print("Creating the batcher ...")
     b = batcher(vocab, params)
-
+    import pdb;pdb.set_trace()
     print("Creating the checkpoint manager")
     checkpoint_dir = "{}/checkpoint".format(params["seq2seq_model_dir"])
     ckpt = tf.train.Checkpoint(SequenceToSequence=model)
@@ -62,6 +62,7 @@ def test(params):
     print("Model restored")
     # for batch in b:
     #     yield batch_greedy_decode(model, batch, vocab, params)
+    # import pdb;pdb.set_trace()
     if params['greedy_decode']:
         # params['batch_size'] = 512
         predict_result(model, params, vocab, params['test_save_dir'])
@@ -69,8 +70,10 @@ def test(params):
 
 def predict_result(model, params, vocab, result_save_path):
     dataset = batcher(vocab, params)
+    import pdb; pdb.set_trace()
     # 预测结果
     results = greedy_decode(model, dataset, vocab, params)
+    import pdb; pdb.set_trace()
     results = list(map(lambda x: x.replace(" ",""), results))
     # 保存结果
     save_predict_result(results, params)

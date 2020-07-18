@@ -37,7 +37,7 @@ class Vocab:
                     print("max_size of vocab was specified as %i; we now have %i words. Stopping reading."
                           % (max_size, self.count))
                     break
-
+        import pdb;pdb.set_trace()
         print("Finished constructing vocabulary of %i total words. Last word added: %s" %
               (self.count, self.id2word[self.count - 1]))
 
@@ -159,7 +159,10 @@ def example_generator(vocab, train_x_path, train_y_path, test_x_path, max_enc_le
         train_dataset = tf.data.Dataset.zip((dataset_train_x, dataset_train_y))
         # train_dataset = train_dataset.shuffle(1000, reshuffle_each_iteration=True).repeat()
         # i = 0
-        for raw_record in train_dataset:
+        # import pdb;pdb.set_trace()
+        for raw_record in train_dataset: # 一共82000条数据
+            # 训练部分数据
+        # if i <= 40000: # 训练40000条数据
             article = raw_record[0].numpy().decode("utf-8")
             abstract = raw_record[1].numpy().decode("utf-8")
 
@@ -200,6 +203,8 @@ def example_generator(vocab, train_x_path, train_y_path, test_x_path, max_enc_le
                 "sample_encoder_pad_mask": sample_encoder_pad_mask,
             }
             yield output
+            # else:
+            #     break
 
     if mode == "test":
         test_dataset = tf.data.TextLineDataset(test_x_path)

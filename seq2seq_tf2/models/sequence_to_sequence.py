@@ -2,6 +2,7 @@ import tensorflow as tf
 from seq2seq_tf2.encoders import rnn_encoder
 from seq2seq_tf2.decoders import rnn_decoder
 from seq2seq_tf2.utils.data_utils import load_word2vec
+# from seq2seq_tf2.utils.wv_loader import load_word2vec_file
 import time
 
 
