@@ -8,7 +8,7 @@
 
 1. 补充`test_helper.py`中`greedy_search`部分代码
 2. 重新训练模型
-   1. 训练环境：GTX1080ti, 12G显存
+   1. 训练环境：GTX1080ti, 12G显存 (使用的是cuda10 docker，并将cudnn由7.5更新至7.6版本)
    2. 训练参数：
       1. batch_size: 64, 使用128显存会溢出
       2. Epoch: 20
